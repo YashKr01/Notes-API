@@ -4,11 +4,13 @@ const noteRouter = require("./routes/noteRoutes");
 const userRouter = require("./routes/userRoutes");
 const mongoose = require("mongoose");
 
+app.use(express.json());
+
 app.use("/users", userRouter);
 app.use("/notes", noteRouter);
 
-mongoose
-    .connect("mongodb+srv://YashKr09:Mongoose@4545@cluster0.qgtjhtt.mongodb.net/?retryWrites=true&w=majority")
+
+mongoose.connect("mongodb+srv://YashKr09:rh7t5xhYZPwt58k0@cluster0.qgtjhtt.mongodb.net/?retryWrites=true&w=majority")
     .then(() => {
         app.listen(6756, () => {
             console.log("Server is started");

@@ -9,4 +9,4 @@ noteRouter.post("/", (req, res) => {
     res.send("Note POST Request");
 });
 
-module.exports = noteRouter
+module.exports = noteRouter;
