@@ -1,18 +1,19 @@
 const express = require("express");
 const app = express();
+const noteRouter = require("./routes/noteRoutes");
+const userRouter = require("./routes/userRoutes");
+const mongoose = require("mongoose");
 
-const quotes = require("./quotes.json")
+app.use("/users", userRouter);
+app.use("/notes", noteRouter);
 
-app.get("/quote", (req, res) => {
-    res.status(200).json(quotes);
-});
+mongoose
+    .connect("mongodb+srv://YashKr09:Mongoose@4545@cluster0.qgtjhtt.mongodb.net/?retryWrites=true&w=majority")
+    .then(() => {
+        app.listen(6756, () => {
+            console.log("Server is started");
+        });
+    }).catch((error) => {
+        console.log(error);
+    });
 
-app.get("/random", (req, res) => {
-    let index = Math.floor(Math.random() * quotes.length);
-    let quote = quotes[index];
-    res.status(404).json(quote);
-});
-
-app.listen(6756, () => {
-    console.log("Server is started");
-});
